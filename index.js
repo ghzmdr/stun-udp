@@ -8,12 +8,13 @@ var url = 'vincentdefeo.me',
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
     console.log(url + ' RESOLVED TO: ' + addresses)
-    server.bind(38359, addresses)
+    server.bind(port, addresses)
 })
 
 
 server.on('message', function (msg, r){
-    console.log(r.address + ':' + r.port + ' -> ' + msg)
+    console.log(' GOT MESSAGE: \n\t' + msg + '\nFROM: ' + r.address + ' : ' + r.port)
+    server.send(msg, 0, msg.length, r.port, r.address)
 })
 
 server.on('listening', function(){
