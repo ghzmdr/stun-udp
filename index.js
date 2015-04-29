@@ -7,16 +7,16 @@ var url = 'vincentdefeo.me',
 
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
-    console.log('\n\tSTARTING...\n' + url + ' RESOLVED TO: ' + addresses)
+    console.log('\nSTARTING...\n' + url + ' RESOLVED TO: ' + addresses)
     server.bind(port, addresses)
-})
-
-server.on('message', function (msg, r){
-    console.log(' GOT MESSAGE: \n\t' + msg + '\nFROM: ' + r.address + ' : ' + r.port)
-    server.send(msg, 0, msg.length, r.port, r.address)
 })
 
 server.on('listening', function(){
     var address = server.address()
     console.log('Listening on : ' + address.address + ':' + address.port)
+})
+
+server.on('message', function (msg, r){
+    console.log('\nGOT MESSAGE:\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
+    server.send(msg, 0, msg.length, r.port, r.address)
 })
