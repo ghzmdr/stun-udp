@@ -5,7 +5,7 @@ var dgram = require('dgram'),
 var url = 'vincentdefeo.me',
     port = 8080
 
-dns.lookup(, function resolved(err, addresses){
+dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
     console.log(url + ' RESOLVED TO: ' + addresses)
     server.bind(addresses, port)
