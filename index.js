@@ -10,7 +10,7 @@ var dgram = require('dgram'),
     console.log(url + ' RESOLVED TO: ' + addresses)
 })*/
 
-server.bind('178.62.219.22', 123456)
+server.bind('178.62.219.22', 38359)
 
 server.on('message', function (msg, r){
     console.log(r.address + ':' + r.port + ' -> ' + message)
