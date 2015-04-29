@@ -13,7 +13,7 @@ dns.lookup(url, function resolved(err, addresses){
 
 
 server.on('message', function (msg, r){
-    console.log(r.address + ':' + r.port + ' -> ' + message)
+    console.log(r.address + ':' + r.port + ' -> ' + msg)
 })
 
 server.on('listening', function(){
