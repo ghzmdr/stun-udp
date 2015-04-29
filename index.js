@@ -7,10 +7,9 @@ var url = 'vincentdefeo.me',
 
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
-    console.log(url + ' RESOLVED TO: ' + addresses)
+    console.log('\n\tSTARTING...\n' + url + ' RESOLVED TO: ' + addresses)
     server.bind(port, addresses)
 })
-
 
 server.on('message', function (msg, r){
     console.log(' GOT MESSAGE: \n\t' + msg + '\nFROM: ' + r.address + ' : ' + r.port)
