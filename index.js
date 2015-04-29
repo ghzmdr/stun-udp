@@ -2,13 +2,20 @@ var dgram = require('dgram'),
     server = dgram.createSocket('udp4'),
     dns = require('dns')
 
-dns.lookup('stun-roll.herokuapp.com', function resolved(err, addresses){
-    if (err) throw err
-    console.log('DNS RESOLVED: ' + addresses)
-    server.bind('addresses', 8080)    
-})
+var url = 'vincentdefeo.me',
+    port = 8080
 
+dns.lookup(, function resolved(err, addresses){
+    if (err) throw err
+    console.log(url + ' RESOLVED TO: ' + addresses)
+    server.bind(addresses, port)
+})
 
 server.on('message', function (msg, r){
     console.log(r.address + ':' + r.port + ' -> ' + message)
+})
+
+server.on('listening', function(){
+    var address = server.address()
+    console.log('Listening on : ' + address.address + ':' + address.port)
 })
