@@ -1,22 +1,22 @@
 var dgram = require('dgram'),
     server = dgram.createSocket('udp4'),
     dns = require('dns'),
-    keypress = require('keypress')
+    //keypress = require('keypress')
+
+var stdin = process.openStdin(); 
+    require('tty').setRawMode(true);    
 
 var url = 'vincentdefeo.me',
-   port = 8080
+    port = 8080
 
 var clients = []
 
-keypress(process.stdin)
-
-process.stdin.on('keypress', function() {
+stdin.on('keypress', function() {
     console.log("\nGot Keypress\n", clients)
 
     for (var i = 0; i < clients.length; i++)
         server.send('data from netherlands', 0, clients[i].port, clients[i].addresses)
 })
-
 
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
