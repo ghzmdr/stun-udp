@@ -41,9 +41,8 @@ server.on('message', function (msg, r){
     var toAdd = true, index;
 
     for (var i = 0; i < clients.length; i++) {
-        //Instead of doing if !toAdd  index = i, 
-        //I'm setting index = i only if toAdd's is false
-        toAdd = !(r.port == clients[i].port && r.address == clients[i].address) || !(index = i)
+        toAdd = !(r.port == clients[i].port && r.address == clients[i].address)
+        if (!toAdd) index = i
     }
 
     if (toAdd) {
@@ -57,10 +56,13 @@ server.on('message', function (msg, r){
         clients.push(clientInfo)
     }
 
-    else clients[i].lastSeen = Date.now()
+    else {
+        clients[index].lastSeen = Date.now()
+        clients[index].packetsSent++;
+    }
 
     console.log('\n==========GOT MESSAGE==========\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
-    console.log('\n'+ toAdd ? 'UN' : '' + 'KNOWN CLIENT')
+    console.log('\n'+ (toAdd ? 'UN' : '') + 'KNOWN CLIENT')
     console.log('\nON: ' + Date.now())
 
     var resp = new Buffer(JSON.stringify(clientInfo))
