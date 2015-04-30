@@ -12,25 +12,36 @@ keypress(process.stdin)
 process.stdin.setRawMode(true)
 
 process.stdin.on('keypress', function(c, k) {
-    if (c == 'c')
-        process.stdin.pause()
-    else {
+    if (c == 'c' || k == 'c')
+        process.exit(0)
+
+    else if (c == '\'' || k == '\''){
         console.log("\nGot Keypress\n", clients)
 
         for (var i = 0; i < clients.length; i++)  
         {
             var msg = new Buffer(JSON.stringify(clients[i]))
-            server.send(msg, 0, msg.length, clients[i].port, clients[i].addresses)
-            clients[i].packetsSent++;
+            server.send(msg, 0, msg.length, clients[i].port, clients[i].address)    
+            clients[i].packetsSent++
+            console.log("SENDING TO: ", clients[i].address + ' ' + clients[i].port)
         }
+    }
+
+    else if (c == '1' || k == '1')
+    {
+        console.log(clients)
     }
 })
 
+/*
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
     console.log('\nSTARTING...\n' + url + ' RESOLVED TO: ' + addresses)
     server.bind(port, addresses)
 })
+*/
+
+server.bind(port, '192.168.2.107')
 
 server.on('listening', function(){
     var address = server.address()
@@ -54,18 +65,19 @@ server.on('message', function (msg, r){
         }
 
         clients.push(clientInfo)
-    }
-
-    else {
+    } else {
         clients[index].lastSeen = Date.now()
         clients[index].packetsSent++;
     }
 
-    console.log('\n==========GOT MESSAGE==========\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
-    console.log('\n'+ (toAdd ? 'UN' : '') + 'KNOWN CLIENT')
-    console.log('\nON: ' + Date.now())
+    console.log('\n========== GOT PACKET ==========')
+    console.log('FROM: ' + r.address + ':' + r.port )
+    console.log(''+ (toAdd ? 'UN' : '') + 'KNOWN CLIENT')
+    console.log('ON: ' + Date.now())
+    console.log('\n===PAYLOAD:\n' + msg)
 
-    var resp = new Buffer(JSON.stringify(clientInfo))
+    var resp = new Buffer(JSON.stringify(clientInfo || clients[index]))
+    console.log('\n===RESP:\n', resp)
     server.send(resp, 0, resp.length, r.port, r.address)    
 })
 
