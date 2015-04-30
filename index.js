@@ -2,7 +2,7 @@ var dgram = require('dgram'),
     server = dgram.createSocket('udp4'),
     dns = require('dns')
 
-var url = 'vincentdefeo.me',
+var url = '127.0.0.1',
    port = 8080
 
 dns.lookup(url, function resolved(err, addresses){
