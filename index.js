@@ -2,7 +2,7 @@ var dgram = require('dgram'),
     server = dgram.createSocket('udp4'),
     dns = require('dns')
 
-var url = '127.0.0.1',
+var url = 'vincentdefeo.me',
    port = 8080
 
 dns.lookup(url, function resolved(err, addresses){
@@ -19,4 +19,8 @@ server.on('listening', function(){
 server.on('message', function (msg, r){
     console.log('\nGOT MESSAGE:\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
     server.send(msg, 0, msg.length, r.port, r.address)
+})
+
+server.on('error', function (msg, r){
+	console.log(msg);
 })
