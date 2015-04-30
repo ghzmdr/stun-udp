@@ -11,8 +11,8 @@ var clients = []
 keypress(process.stdin)
 
 process.stdin.on('keypress', function (ch, key) {
-    console.log(clients)
-    
+    console.log("Got Keypress", clients)
+
     for (var i = 0; i < clients.length; i++)
         server.send('data from netherlands', 0, clients[i].port, clients[i].addresses)
 });
