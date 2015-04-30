@@ -11,5 +11,8 @@
     "url": "https://git.heroku.com/stun-roll.git"
   },
   "author": "Vincent De Feo (ghzmdr)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "keypress": "^0.2.1"
+  }
 }
