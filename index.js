@@ -11,14 +11,16 @@ var clients = []
 keypress(process.stdin)
 process.stdin.setRawMode(true)
 
+var testBuffer = new Buffer('data from netherlands')
+
 process.stdin.on('keypress', function(c, k) {
     if (c == 'c')
         process.stdin.pause()
     else {
         console.log("\nGot Keypress\n", clients)
 
-        for (var i = 0; i < clients.length; i++)
-            server.send(new Buffer('data from netherlands'), 0, clients[i].port, clients[i].addresses)
+        for (var i = 0; i < clients.length; i++)            
+            server.send(testBuffer, testBuffer.length, 0, clients[i].port, clients[i].addresses)
     }
 })
 
