@@ -18,9 +18,10 @@ server.on('listening', function(){
 
 server.on('message', function (msg, r){
     console.log('\nGOT MESSAGE:\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
+    console.log('\nON: ' + Date.now())
     server.send(msg, 0, msg.length, r.port, r.address)
 })
 
-server.on('error', function (msg, r){
-	console.log(msg);
+server.on('error', function (err){
+	console.log("\n[!!] ERROR: " + err);
 })
