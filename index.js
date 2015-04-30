@@ -3,7 +3,7 @@ var dgram = require('dgram'),
     dns = require('dns'),
     keypress = require('keypress')
 
-var url = '127.0.0.1',
+var url = 'vincentdefeo.me',
     port = 8080
 
 var clients = []
