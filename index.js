@@ -1,9 +1,9 @@
 var dgram = require('dgram'),
     server = dgram.createSocket('udp4'),
-    dns = require('dns'),
+    dns = require('dns')
     //keypress = require('keypress')
 
-var stdin = process.openStdin(); 
+var stdin = process.openStdin(),
     require('tty').setRawMode(true);    
 
 var url = 'vincentdefeo.me',
