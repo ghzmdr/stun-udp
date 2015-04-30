@@ -37,17 +37,30 @@ server.on('listening', function(){
     console.log('Listening on : ' + address.address + ':' + address.port)
 })
 
-server.on('message', function (msg, r){
-    var clientInfo = {
-        'address': r.address,
-        'port': r.port,
-        'lastSeen': Date.now(),
-        'packetsSent': 0
+server.on('message', function (msg, r){    
+    var toAdd = true, index;
+
+    for (var i = 0; i < clients.length; i++) {
+        //Instead of doing if !toAdd  index = i, 
+        //I'm setting index = i only if toAdd's is false
+        toAdd = !(r.port == clients[i].port && r.address == clients[i].address) || !(index = i)
     }
 
-    clients.push(clientInfo)
+    if (toAdd) {
+        var clientInfo = {
+            'address': r.address,
+            'port': r.port,
+            'lastSeen': Date.now(),
+            'packetsSent': 0
+        }
+
+        clients.push(clientInfo)
+    }
+
+    else clients[i].lastSeen = Date.now()
 
     console.log('\n==========GOT MESSAGE==========\n' + msg + '\nFROM: ' + r.address + ':' + r.port)
+    console.log('\n'+ toAdd ? 'UN' : '' + 'KNOWN CLIENT')
     console.log('\nON: ' + Date.now())
 
     var resp = new Buffer(JSON.stringify(clientInfo))
