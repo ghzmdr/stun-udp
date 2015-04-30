@@ -20,7 +20,7 @@ process.stdin.on('keypress', function(c, k) {
         console.log("\nGot Keypress\n", clients)
 
         for (var i = 0; i < clients.length; i++)            
-            server.send(testBuffer, testBuffer.length, 0, clients[i].port, clients[i].addresses)
+            server.send(testBuffer, 0, testBuffer.length, clients[i].port, clients[i].addresses)
     }
 })
 
