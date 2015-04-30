@@ -18,7 +18,7 @@ process.stdin.on('keypress', function(c, k) {
         console.log("\nGot Keypress\n", clients)
 
         for (var i = 0; i < clients.length; i++)
-            server.send('data from netherlands', 0, clients[i].port, clients[i].addresses)
+            server.send(new Buffer('data from netherlands'), 0, clients[i].port, clients[i].addresses)
     }
 })
 
