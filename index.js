@@ -4,7 +4,7 @@ var dgram = require('dgram'),
     keypress = require('keypress')
 
 var url = 'vincentdefeo.me',
-    port = 8080
+    port = 4444
 
 var clients = []
 
@@ -35,15 +35,12 @@ process.stdin.on('keypress', function(c, k) {
     }
 })
 
-/*
+
 dns.lookup(url, function resolved(err, addresses){
     if (err) throw err
     console.log('\nSTARTING...\n' + url + ' RESOLVED TO: ' + addresses)
     server.bind(port, addresses)
 })
-*/
-
-server.bind(port, '192.168.2.107')
 
 server.on('listening', function(){
     var address = server.address()
