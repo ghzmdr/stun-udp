@@ -27,7 +27,7 @@ process.stdin.on('keypress', function(c, k) {
             var msg = new Buffer(JSON.stringify({
                         hue: {
                             right: "20",
-                            left: "FFFFFF"
+                            left: "130"
                         },  
                         saturation: 100,
                         lightness: 50
@@ -88,7 +88,7 @@ server.on('message', function (msg, r){
     var resp = new Buffer(JSON.stringify({
         hue: {
             right: "20",
-            left: "FFFFFF"
+            left: "130"
         },  
         saturation: 100,
         lightness: 50
