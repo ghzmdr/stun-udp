@@ -25,11 +25,12 @@ process.stdin.on('keypress', function(c, k) {
 
             //var msg = new Buffer(JSON.stringify(clients[i]))
             var msg = new Buffer(JSON.stringify({
-                        colors: {
-                            right: "000000",
+                        hue: {
+                            right: "20",
                             left: "FFFFFF"
-                        },
-                        toggle: false
+                        },  
+                        saturation: 100,
+                        lightness: 50
                     }))
             server.send(msg, 0, msg.length, clients[i].port, clients[i].address)    
             console.log("SENDING TO: ", clients[i].address + ' ' + clients[i].port)
@@ -85,11 +86,12 @@ server.on('message', function (msg, r){
 
     //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
     var resp = new Buffer(JSON.stringify({
-        colors: {
-            right: "000000",
+        hue: {
+            right: "20",
             left: "FFFFFF"
-        },
-        toggle: false
+        },  
+        saturation: 100,
+        lightness: 50
     }))
 
     server.send(resp, 0, resp.length, r.port, r.address)    
