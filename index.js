@@ -26,7 +26,7 @@ process.stdin.on('keypress', function(c, k) {
             //var msg = new Buffer(JSON.stringify(clients[i]))
             var msg = new Buffer(JSON.stringify({
                         colors: {
-                            left: "FAFAFA",
+                            left: "FF0000",
                             right: "2B2B2B"
                         },
                         toggle: false
