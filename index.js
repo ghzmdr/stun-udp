@@ -26,8 +26,8 @@ process.stdin.on('keypress', function(c, k) {
             //var msg = new Buffer(JSON.stringify(clients[i]))
             var msg = new Buffer(JSON.stringify({
                         colors: {
-                            left: "FF0000",
-                            right: "2B2B2B"
+                            left: "#FF0000",
+                            right: "#2B2B2B"
                         },
                         toggle: false
                     }))
@@ -86,8 +86,8 @@ server.on('message', function (msg, r){
     //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
     var resp = new Buffer(JSON.stringify({
         colors: {
-            left: "FAFAFA",
-            right: "2B2B2B"
+            left: "#FAFAFA",
+            right: "#2B2B2B"
         },
         toggle: false
     }))
