@@ -23,7 +23,14 @@ process.stdin.on('keypress', function(c, k) {
             clients[i].packetsSent++
             clients[i].toggle = !clients[i].toggle
 
-            var msg = new Buffer(JSON.stringify(clients[i]))
+            //var msg = new Buffer(JSON.stringify(clients[i]))
+            var msg = new Buffer(JSON.stringify({
+                        colors: {
+                            left: "FAFAFA",
+                            right: "2B2B2B"
+                        },
+                        toggle: false
+                    }))
             server.send(msg, 0, msg.length, clients[i].port, clients[i].address)    
             console.log("SENDING TO: ", clients[i].address + ' ' + clients[i].port)
         }
@@ -77,13 +84,13 @@ server.on('message', function (msg, r){
     console.log('\n===PAYLOAD:\n' + msg)
 
     //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
-    var resp = new Buffer({
+    var resp = new Buffer(JSON.stringify({
         colors: {
             left: "FAFAFA",
             right: "2B2B2B"
         },
         toggle: false
-    })
+    }))
 
     server.send(resp, 0, resp.length, r.port, r.address)    
 })
