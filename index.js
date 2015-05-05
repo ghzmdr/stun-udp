@@ -76,7 +76,15 @@ server.on('message', function (msg, r){
     console.log('ON: ' + Date.now())
     console.log('\n===PAYLOAD:\n' + msg)
 
-    var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
+    //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
+    var resp = new Buffer({
+        colors: {
+            left: "FAFAFA",
+            right: "2B2B2B"
+        },
+        toggle = false
+    })
+    
     server.send(resp, 0, resp.length, r.port, r.address)    
 })
 
