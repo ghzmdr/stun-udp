@@ -86,8 +86,8 @@ server.on('message', function (msg, r){
     //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
     var resp = new Buffer(JSON.stringify({
         colors: {
-            right: "000000"
-            left: "FFFFFF",
+            right: "000000",
+            left: "FFFFFF"
         },
         toggle: false
     }))
