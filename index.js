@@ -82,9 +82,9 @@ server.on('message', function (msg, r){
             left: "FAFAFA",
             right: "2B2B2B"
         },
-        toggle = false
+        toggle: false
     })
-    
+
     server.send(resp, 0, resp.length, r.port, r.address)    
 })
 
