@@ -26,7 +26,7 @@ process.stdin.on('keypress', function(c, k) {
             //var msg = new Buffer(JSON.stringify(clients[i]))
             var msg = new Buffer(JSON.stringify({
                         hue: {
-                            right: "20",
+                            right: "100",
                             left: "130"
                         },  
                         saturation: 100,
