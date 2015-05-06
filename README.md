@@ -1,2 +1,2 @@
-##Go away, there's nothing interting to see there
+##Go away, there's nothing to see here
 ![grumpy cat](./Grumpy-Cat.jpg)
