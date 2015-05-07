@@ -24,8 +24,8 @@ process.stdin.on('keypress', function(c, k) {
             clients[i].toggle = !clients[i].toggle
 
             //var msg = new Buffer(JSON.stringify(clients[i]))
-            lCol = Math.random()*360 +1
-            rCol = Math.random()*360 +1
+            lCol = Math.floor(Math.random()*360 +1)
+            rCol = Math.floor(Math.random()*360 +1)
             
             var msg = new Buffer(JSON.stringify({
                         hue: {
@@ -90,8 +90,8 @@ server.on('message', function (msg, r){
 
     //var resp = new 
     Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
-    lCol = Math.random()*360 +1
-    rCol = Math.random()*360 +1
+    lCol = Math.floor(Math.random()*360 +1)
+    rCol = Math.floor(Math.random()*360 +1)
     var resp = new Buffer(JSON.stringify({
         hue: {
             right: rCol,
