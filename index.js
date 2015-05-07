@@ -26,8 +26,8 @@ process.stdin.on('keypress', function(c, k) {
             //var msg = new Buffer(JSON.stringify(clients[i]))
             var msg = new Buffer(JSON.stringify({
                         hue: {
-                            right: "100",
-                            left: "130"
+                            right: Math.random()*100 +1,
+                            left: Math.random()*100 +1
                         },  
                         saturation: 100,
                         lightness: 50
@@ -87,8 +87,8 @@ server.on('message', function (msg, r){
     //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
     var resp = new Buffer(JSON.stringify({
         hue: {
-            right: "20",
-            left: "130"
+            right: Math.random()*100 +1,
+            left: Math.random()*100 +1
         },  
         saturation: 100,
         lightness: 50
