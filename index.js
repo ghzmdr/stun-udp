@@ -16,7 +16,7 @@ process.stdin.on('keypress', function(c, k) {
         process.exit(0)
 
     else if (c == '\'' || k == '\''){
-        console.log("\nGot Keypress\n", clients)
+        console.log("\nGot Keypress\n")
 
         for (var i = 0; i < clients.length; i++)  
         {
@@ -24,16 +24,20 @@ process.stdin.on('keypress', function(c, k) {
             clients[i].toggle = !clients[i].toggle
 
             //var msg = new Buffer(JSON.stringify(clients[i]))
+            lCol = Math.random()*360 +1
+            rCol = Math.random()*360 +1
+            
             var msg = new Buffer(JSON.stringify({
                         hue: {
-                            right: Math.random()*100 +1,
-                            left: Math.random()*100 +1
+                            right: rCol,
+                            left: lCol
                         },  
                         saturation: 100,
                         lightness: 50
                     }))
             server.send(msg, 0, msg.length, clients[i].port, clients[i].address)    
             console.log("SENDING TO: ", clients[i].address + ' ' + clients[i].port)
+            console.log("HUES: R = " + rCol + " L = " + lCol)
         }
     }
 
@@ -84,11 +88,14 @@ server.on('message', function (msg, r){
     console.log('ON: ' + Date.now())
     console.log('\n===PAYLOAD:\n' + msg)
 
-    //var resp = new Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
+    //var resp = new 
+    Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
+    lCol = Math.random()*360 +1
+    rCol = Math.random()*360 +1
     var resp = new Buffer(JSON.stringify({
         hue: {
-            right: Math.random()*100 +1,
-            left: Math.random()*100 +1
+            right: rCol,
+            left: lCol
         },  
         saturation: 100,
         lightness: 50
