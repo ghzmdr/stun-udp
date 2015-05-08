@@ -46,7 +46,7 @@ process.stdin.on('keypress', function(c, k) {
 })
 
 function sendPackets(random, singleHost) {
-    console.log("\nSENDING " + (random ? "RADOMIZED " : "") + "PACKETS TO " + (singleHost ? "1 CLIENT" : clients.length + " CLIENTS"))
+    console.log("\nSENDING " + (random ? "RADOMIZED " : "") + "PACKETS TO " + (singleHost || clients.length == 1 ? "1 CLIENT" : clients.length + " CLIENTS"))
 
     var msg = craftPacket(random)
 
