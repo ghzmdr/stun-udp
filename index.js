@@ -21,12 +21,10 @@ process.stdin.on('keypress', function(c, k) {
         process.exit(0)
 
     else if (c == 's' || k == 's') {
-        console.log("\nSending responses\n")
         sendPackets()        
     }
 
     else if (c == 'r' || k == 'r') {
-        console.log("\nSending responses with randomized hues\n")
         sendPackets(true)        
     }
 
@@ -40,13 +38,15 @@ process.stdin.on('keypress', function(c, k) {
     }
 
     else if (c == '9' || k == '9') {
-        if (sendInterval)
+        if (sendInterval){
             clearInterval(sendInterval)
+            sendInterval = false
+        }
     }
 })
 
 function sendPackets(random, singleHost) {
-    console.log("\nSENDING " + (random ? "RADOMIZED" : "") + "PACKETS TO " + (singleHost ? "1 CLIENT" : clients.length + " CLIENTS"))
+    console.log("\nSENDING " + (random ? "RADOMIZED " : "") + "PACKETS TO " + (singleHost ? "1 CLIENT" : clients.length + " CLIENTS"))
 
     var msg = craftPacket(random)
 
