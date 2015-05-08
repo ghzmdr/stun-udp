@@ -24,8 +24,8 @@ process.stdin.on('keypress', function(c, k) {
             clients[i].toggle = !clients[i].toggle
 
             //var msg = new Buffer(JSON.stringify(clients[i]))
-            lCol = Math.floor(Math.random()*360 +1)
-            rCol = Math.floor(Math.random()*360 +1)
+            lCol = 100//Math.floor(Math.random()*360 +1)
+            rCol = 200//Math.floor(Math.random()*360 +1)
             
             var msg = new Buffer(JSON.stringify({
                         hue: {
@@ -46,6 +46,32 @@ process.stdin.on('keypress', function(c, k) {
         console.log(clients)
     }
 })
+
+/*
+setInterval(function() {
+	for (var i = 0; i < clients.length; i++)
+        {
+            clients[i].packetsSent++
+            clients[i].toggle = !clients[i].toggle
+
+            //var msg = new Buffer(JSON.stringify(clients[i]))
+            lCol = 100//Math.floor(Math.random()*360 +1)
+            rCol = 200//Math.floor(Math.random()*360 +1)
+
+            var msg = new Buffer(JSON.stringify({
+                        hue: {
+                            right: rCol,
+                            left: lCol
+                        },
+                        saturation: 100,
+                        lightness: 50
+                    }))
+            server.send(msg, 0, msg.length, clients[i].port, clients[i].address)
+            console.log("SENDING TO: ", clients[i].address + ' ' + clients[i].port)
+            console.log("HUES: R = " + rCol + " L = " + lCol)
+        }
+}, 300)
+*/
 
 
 dns.lookup(url, function resolved(err, addresses){
@@ -90,8 +116,8 @@ server.on('message', function (msg, r){
 
     //var resp = new 
     Buffer(JSON.stringify(clientInfo || clients[index]) + '\n\n')
-    lCol = Math.floor(Math.random()*360 +1)
-    rCol = Math.floor(Math.random()*360 +1)
+    lCol = 100//Math.floor(Math.random()*360 +1)
+    rCol = 200//Math.floor(Math.random()*360 +1)
     var resp = new Buffer(JSON.stringify({
         hue: {
             right: rCol,
